@@ -2,6 +2,8 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -51,35 +53,89 @@
       li .journal { font-style: italic; font-weight: bold; color: #12c126 }
 
       .refs { font-weight: normal; font-size: 12pt; }
+
+      .lang-en { display: none; }
     </style>
+
+    <script>
+      var cur_lang = 'fr'
+      function set_lang(lang) {
+        document.querySelectorAll('.lang-' + cur_lang).forEach(element => {
+          element.style.display = 'none';
+        });
+        document.querySelectorAll('.lang-' + lang).forEach(element => {
+          element.style.display = 'block';
+        });
+        cur_lang = lang;
+        document.querySelector('select').value = lang;
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        document.querySelector('select').value = 'fr';
+        if(!navigator.language.startsWith('fr')) set_lang('en');
+      });
+    </script>
   </head>
   <body>
+
+    <nav style="position: fixed; top: 10px; right: 10px;">
+      <select onchange="set_lang(this.value)">
+        <option value="fr" selected>fr</option>
+        <option value="en">en</option>
+      </select>
+    </nav>
+
     <header>
       <h1>Maxime Flin</h1>
-      <p><strong>PhD Student, Reykjavik University, Iceland</strong></p>
-      <p><strong>Email:</strong> <code>first-name f at ru dot is</code></p>
-      <p><strong>Languages:</strong> French (native), English (fluent), German (basic), Icelandic (more than nothing)</p>
+      <p>
+        <strong class="lang-en">Postdoctoral Researcher, Aalto University, Finland</strong>
+        <strong class="lang-fr">Post-Doctorant, Aalto University, Finlande</strong>
+      </p>
+      <p><strong>Courriel:</strong> <code>first-name dot last-name at aalto dot fi</code></p>
+      <p class="lang-en"><strong>Languages:</strong> French (native), English (fluent), German (basic)</p>
+      <p class="lang-fr"><strong>Langues:</strong> Français (langue maternelle), Anglais (courant), Allemand (notions)</p>
     </header>
 
     <section id="bio">
-      <p>
-        I am a third-year PhD student at the <a href="https://icetcs.github.io/ ">Icelandic Center of Excellence in Theoretical Computer Science</a> at <a href="https://en.ru.is/">Reykjavik University</a>.
-        I am fortunate to be advised by <a href="https://staff.ru.is/mmh/">Magnús M. Halldórsson</a>.
+      <p class="lang-en">
+        I am a postdoctoral researcher at <a href="https://www.aalto.fi/en/department-of-computer-science">Aalto University</a> in the group of <a href="https://jukkasuomela.fi/">Jukka Suomela</a>.
+      </p>
+
+      <p class="lang-en">
+        I recently completed my PhD at <a href="https://en.ru.is/">Reykjavik University</a> under the supervision of <a href="https://staff.ru.is/mmh/">Magnús M. Halldórsson</a>.
         Prior to that, I did my master studies at <a href="https://www.ens.psl.eu/">École Normale Supérieure de Paris</a>, where I completed the <a href="https://wikimpri.dptinfo.ens-cachan.fr/doku.php">Master Parisien de Recherche en Informatique</a>.
         I received a bachelor of Computer Science and one of Mathematics from <a href="https://u-paris.fr/en/">Université Paris Diderot (now Paris Cité)</a>
       </p>
 
-      <p>
-        My research is supported by the <a href="https://en.rannis.is/news/allocation-from-the-icelandic-research-fund-for-the-financial-year-2023">Icelandic Research Fund</a>.
-        <!--As a master student, I received a scholarship grant for excellence from the computer science department of ENS.-->
+      <p class="lang-fr">
+        Je suis un postdoctorant à <a href="https://www.aalto.fi/en/department-of-computer-science">Aalto University</a> dans le groupe de <a href="https://jukkasuomela.fi/">Jukka Suomela</a>.
       </p>
 
+      <p class="lang-fr">
+        J'ai récemment soutenu ma thèse de doctorat à l'<a href="https://en.ru.is/">Université de Reykjavik</a> sous la supervision de <a href="https://staff.ru.is/mmh/">Magnús M. Halldórsson</a>.
+        Avant cela, j'ai fait mes études à l'<a href="https://www.ens.psl.eu/">École Normale Supérieure de Paris</a>, où j'ai complété le <a href="https://wikimpri.dptinfo.ens-cachan.fr/doku.php">Master Parisien de Recherche en Informatique</a>.
+        J'ai obtenu une double licence en informatique et un autre en mathématiques de l'<a href="https://u-paris.fr/en/">Université Paris Diderot (maintenant Paris Cité)</a>.
+      </p>
 
-      <p>
+      <p class="lang-en">
+        My research is supported by the Research Council of Finland, Grant <a href="https://jukkasuomela.fi/causal-project/">359104</a>. My PhD was funded by the <a href="https://en.rannis.is/news/allocation-from-the-icelandic-research-fund-for-the-financial-year-2023">Icelandic Research Fund</a>.
+        <!--As a master student, I received a scholarship grant for excellence from the computer science department of ENS.-->
+      </p>
+      <p class="lang-fr">
+        Ma recherche est soutenue par le Research Council of Finland, bourse n°<a href="https://jukkasuomela.fi/causal-project/">359104</a>. Ma thèse a été financée par <a href="https://en.rannis.is/news/allocation-from-the-icelandic-research-fund-for-the-financial-year-2023">Fond de Recherche Islandais</a>.
+      </p>
+
+      <p class="lang-en">
         <strong>Research Interests:</strong>
         I have a broad interest in algorithms, complexity, and combinatorics.
         Notably in graph theory, randomness, and optimization.
-        So far, my work has focused on distributed coloring in constrained models.
+        So far, my work has focused on coloring in constrained models.
+      </p>
+      <p class="lang-fr">
+        <strong>Domaines de Recherche:</strong>
+        Je m'intéresse aux algorithmes, la complexité et la combinatoire.
+        Notamment en théorie des graphes, aléatoire et optimisation.
+        Pour l'instant, mon travail s'est concentré sur la coloration dans des modèles contraints.
       </p>
 
     </section>
@@ -87,8 +143,7 @@
     <section id="pubs">
       <h3>Publications <span class="refs">[ <a href="https://arxiv.org/search/cs?searchtype=author&query=Flin%2C+M">arxiv</a> | <a href="https://dblp.uni-trier.de/pid/337/9935.html">dblp</a> | <a href="https://orcid.org/0009-0005-2693-0470">orcid</a> ]</span></h3>
       <ul>
-
-
+        
 <li class="pub">
   <div>
     <p class="title">Faster Dynamic \((\Delta+1)\)-Coloring Against Adaptive Adversaries</p>
@@ -98,7 +153,7 @@
     <p>[ <a href='https://arxiv.org/abs/2504.19729'>arxiv</a> ]</p>
   </div>
 </li>
-
+    
 <li class="pub">
   <div>
     <p class="title">Decentralized Distributed Graph Coloring: Cluster Graphs</p>
@@ -112,13 +167,13 @@
 <li class="pub">
   <div>
     <p class="title">When MIS and Maximal Matching are Easy in the Congested Clique</p>
-    <p class='coauthors'>with <a href="https://ckeren.net.technion.ac.il/">Keren Censor-Hillel</a>, Tomer Even, <a href='https://staff.ru.is/mmh/'>Magnús M. Halldórsson</a></p> 
+    <p class='coauthors'>with <a href='https://ckeren.net.technion.ac.il/'>Keren Censor-Hillel</a>, Tomer Even, <a href='https://staff.ru.is/mmh/'>Magnús M. Halldórsson</a></p> 
     <p>Structural Information and Communication Complexity, <span class='conf'>SIROCCO 2025</span></p>
     
     <p>[ <a href='https://arxiv.org/abs/2502.21031'>arxiv</a> ]</p>
   </div>
 </li>
-
+    
 <li class="pub">
   <div>
     <p class="title">Decentralized Distributed Graph Coloring II: degree+1-Coloring Virtual Graphs</p>
@@ -173,7 +228,8 @@
     </section>
 
     <section>
-      <h3>Talks</h3>
+      <h3 class="lang-en">Talks</h3>
+      <h3 class="lang-fr">Exposés & Séminaires</h3>
       <ul>
         <li><p class="title">PODC'24</p></li>
         <li><p class="title">GALAC Seminar at LISN, Université Paris-Saclay</p></li>
@@ -186,7 +242,8 @@
     </section>
 
     <section>
-      <h3>Teaching</h3>
+      <h3 class="lang-en">Teaching</h3>
+      <h3 class="lang-fr">Enseignement</h3>
       <ul>
         <li>
           <p class="title">Design of Algorithms</p>
@@ -208,7 +265,7 @@
 
     <footer>
       <hr>
-      <p><i>(last updated: April 2025)</i></p>
+      <p><i>(last updated: September 2025)</i></p>
     </footer>
   </body>
 </html>
