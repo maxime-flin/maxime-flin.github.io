@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="me" href="https://mastodon.social/@mflin">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -24,24 +26,26 @@
       }
 
       @media screen and (min-width: 900px) {
-          header, section, footer { margin: 2em 25% 2em 5% }
+          header, section, footer { margin: 3em 25% 3em 5% }
       }
 
       @media screen and (min-width: 900px) and (max-width: 1200px) {
-          header, section, footer { margin: 2em 10% 2em 2em }
+          header, section, footer { margin: 2.5em 10% 2.5em 2em }
       }
 
       @media screen and (max-width: 900px) {
-          header, section, footer { margin: 1em 2em 1em 2em }
+          header, section, footer { margin: 1.5em 2em 1.5em 2em }
       }
 
-      header h1 { font-size: 2.25em; line-height: 0; margin: 2em 0 1em 0; }
-      footer { font-size: .6em }
+      header h1 { font-size: 2.25em; line-height: 0; margin: 2em 0 1.5em 0; }
+      footer { font-size: .6em; margin-top: 4em; }
 
       a { color: #2a7ae2; }
       a:hover { color: #111; }
 
       #bio { text-align: justify; }
+
+      .subtitle { font-size: .75em; }
 
       ol { padding-left: 0 }
       ul { padding-left: 1em }
@@ -55,6 +59,30 @@
       .refs { font-weight: normal; font-size: 12pt; }
 
       .lang-en { display: none; }
+
+      nav select {
+          padding: 4px 10px;
+          border: 1px solid #ddd;
+          border-radius: 16px;
+          background-color: white;
+          font-family: Libre Baskerville, serif;
+          font-size: 10pt;
+          color: #666;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+      }
+
+      nav select:hover {
+          border-color: #ccc;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+      }
+
+      nav select:focus {
+          outline: none;
+          border-color: #2a7ae2;
+          box-shadow: 0 0 0 2px rgba(42, 122, 226, 0.2);
+      }
     </style>
 
     <script>
@@ -142,6 +170,7 @@
 
     <section id="pubs">
       <h3>Publications <span class="refs">[ <a href="https://arxiv.org/search/cs?searchtype=author&query=Flin%2C+M">arxiv</a> | <a href="https://dblp.uni-trier.de/pid/337/9935.html">dblp</a> | <a href="https://orcid.org/0009-0005-2693-0470">orcid</a> ]</span></h3>
+      <p class="subtitle">As customary in mathematics, authors are listed in alphabetical order.</p>
       <ul>
         
 <li class="pub">
@@ -228,9 +257,22 @@
     </section>
 
     <section>
+      <h3 class="lang-en">Service</h3>
+      <h3 class="lang-fr">Service</h3>
+      <ul>
+        <li><p class="title">2026: SODA (2), STOC (2)</p></li>
+        <li><p class="title">2025: PODC (2), STOC (1), SIROCCO (1)</p></li>
+        <li><p class="title">2024: PODC (2), DISC (1), Distributed Computing (1)</p></li>
+      </ul>
+    </section>
+
+    <section>
       <h3 class="lang-en">Talks</h3>
       <h3 class="lang-fr">Exposés & Séminaires</h3>
       <ul>
+        <li><p class="title">Helsinki CS Theory Seminar</p></li>
+        <li><p class="title">ICALP'25</p></li>
+        <li><p class="title">PODC'25</p></li>
         <li><p class="title">PODC'24</p></li>
         <li><p class="title">GALAC Seminar at LISN, Université Paris-Saclay</p></li>
         <li><p class="title">Complexity & Algorithm Seminar at Waterloo University</p></li>
@@ -265,7 +307,7 @@
 
     <footer>
       <hr>
-      <p><i>(last updated: September 2025)</i></p>
+      <p><i>(last updated: December 2025)</i></p>
     </footer>
   </body>
 </html>
