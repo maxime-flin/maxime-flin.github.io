@@ -10,7 +10,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <title>Maxime Flin</title>
@@ -58,6 +57,9 @@
 
       .refs { font-weight: normal; font-size: 12pt; }
 
+      li.pub { display: none; }
+      li.pub.selected { display: list-item; }
+
       .lang-en { display: none; }
 
       nav select {
@@ -98,9 +100,22 @@
         document.querySelector('select').value = lang;
       }
 
+      var selected_only = true
+      function toggle_see_selected(e) {
+        e.preventDefault();
+        selected_only = !selected_only;
+        document.getElementById('toggle-selected').innerText = !selected_only ? 'see selected' : 'see all';
+        document.getElementById('selected-text').style.display = selected_only ? 'inline' : 'none';
+        document.querySelectorAll('li.pub').forEach(element => {
+          show = !selected_only || element.classList.contains('selected');
+          element.style.display = show ? 'list-item' : 'none';
+        });
+      }
+
       document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('select').value = 'fr';
         if(!navigator.language.startsWith('fr')) set_lang('en');
+        document.getElementById('toggle-selected').addEventListener('click', toggle_see_selected);
       });
     </script>
   </head>
@@ -147,7 +162,6 @@
 
       <p class="lang-en">
         My research is supported by the Research Council of Finland, Grant <a href="https://jukkasuomela.fi/causal-project/">359104</a>. My PhD was funded by the <a href="https://en.rannis.is/news/allocation-from-the-icelandic-research-fund-for-the-financial-year-2023">Icelandic Research Fund</a>.
-        <!--As a master student, I received a scholarship grant for excellence from the computer science department of ENS.-->
       </p>
       <p class="lang-fr">
         Ma recherche est soutenue par le Research Council of Finland, bourse n°<a href="https://jukkasuomela.fi/causal-project/">359104</a>. Ma thèse a été financée par <a href="https://en.rannis.is/news/allocation-from-the-icelandic-research-fund-for-the-financial-year-2023">Fond de Recherche Islandais</a>.
@@ -169,90 +183,100 @@
     </section>
 
     <section id="pubs">
-      <h3>Publications <span class="refs">[ <a href="https://arxiv.org/search/cs?searchtype=author&query=Flin%2C+M">arxiv</a> | <a href="https://dblp.uni-trier.de/pid/337/9935.html">dblp</a> | <a href="https://orcid.org/0009-0005-2693-0470">orcid</a> ]</span></h3>
+      <h3><span id="selected-text">Selected </span>Publications <span class="refs">[ <a id="toggle-selected" href="#">see all</a> | <a href="https://arxiv.org/search/cs?searchtype=author&query=Flin%2C+M">arxiv</a> | <a href="https://dblp.uni-trier.de/pid/337/9935.html">dblp</a> | <a href="https://orcid.org/0009-0005-2693-0470">orcid</a> ]</span></h3>
       <p class="subtitle">As is customary in mathematics, the authors are listed in alphabetical order.</p>
       <ul>
-        
-<li class="pub">
+
+
+<li class="pub selected">
+<div>
+    <p class="title">Sublogarithmic Distributed Vertex Coloring with Optimal Number
+      of Colors</p>
+    <p class='coauthors'>with <a href='https://staff.ru.is/mmh/'>Magnús M. Halldórsson</a>, <a href='https://www.tugraz.at/institute/atcs/people/manuel-jakob'>Manuel Jakob</a>, <a href='https://academia.yannicmaus.de/'>Yannic Maus</a></p>
+    <p>Symposium on Theory of Computing, <span class='conf'>STOC 2026</span></p>
+</div>
+</li>
+
+<li class="pub selected">
   <div>
     <p class="title">Faster Dynamic \((\Delta+1)\)-Coloring Against Adaptive Adversaries</p>
-    <p class='coauthors'>with <a href='https://staff.ru.is/mmh/'>Magnús M. Halldórsson</a></p> 
+    <p class='coauthors'>with <a href='https://staff.ru.is/mmh/'>Magnús M. Halldórsson</a></p>
     <p>International Colloquium on Automata, Languages, and Programming, <span class='conf'>ICALP 2025</span></p>
-    
-    <p>[ <a href='https://arxiv.org/abs/2504.19729'>arxiv</a> ]</p>
+
+    <p>[ <a href='https://arxiv.org/abs/2504.19729'>arxiv</a> | <a href='https://doi.org/10.4230/LIPIcs.ICALP.2025.79'>conference version</a> ]</p>
   </div>
 </li>
-    
+
 <li class="pub">
   <div>
     <p class="title">Decentralized Distributed Graph Coloring: Cluster Graphs</p>
-    <p class='coauthors'>with <a href='https://staff.ru.is/mmh/'>Magnús M. Halldórsson</a>, <a href='https://www.irif.fr/~nolin/'>Alexandre Nolin</a></p> 
+    <p class='coauthors'>with <a href='https://staff.ru.is/mmh/'>Magnús M. Halldórsson</a>, <a href='https://www.irif.fr/~nolin/'>Alexandre Nolin</a></p>
     <p>Symposium on Principles of Distributed Computing, <span class='conf'>PODC 2025</span></p>
-    
-    <p>[ <a href='https://arxiv.org/abs/2405.07725'>arxiv</a> ]</p>
+
+    <p>[ <a href='https://arxiv.org/abs/2405.07725'>arxiv</a> | <a href='https://dl.acm.org/doi/10.1145/3732772.3733549'>conference version</a> ]</p>
   </div>
 </li>
-    
+
 <li class="pub">
   <div>
     <p class="title">When MIS and Maximal Matching are Easy in the Congested Clique</p>
-    <p class='coauthors'>with <a href='https://ckeren.net.technion.ac.il/'>Keren Censor-Hillel</a>, Tomer Even, <a href='https://staff.ru.is/mmh/'>Magnús M. Halldórsson</a></p> 
+    <p class='coauthors'>with <a href='https://ckeren.net.technion.ac.il/'>Keren Censor-Hillel</a>, Tomer Even, <a href='https://staff.ru.is/mmh/'>Magnús M. Halldórsson</a></p>
     <p>Structural Information and Communication Complexity, <span class='conf'>SIROCCO 2025</span></p>
-    
-    <p>[ <a href='https://arxiv.org/abs/2502.21031'>arxiv</a> ]</p>
+
+    <p>[ <a href='https://arxiv.org/abs/2502.21031'>arxiv</a> | <a href='https://link.springer.com/chapter/10.1007/978-3-031-91736-3_12'>conference version</a> ]</p>
   </div>
 </li>
-    
+
 <li class="pub">
   <div>
     <p class="title">Decentralized Distributed Graph Coloring II: degree+1-Coloring Virtual Graphs</p>
-    <p class='coauthors'>with <a href='https://staff.ru.is/mmh/'>Magnús M. Halldórsson</a>, <a href='https://www.irif.fr/~nolin/'>Alexandre Nolin</a></p> 
+    <p class='coauthors'>with <a href='https://staff.ru.is/mmh/'>Magnús M. Halldórsson</a>, <a href='https://www.irif.fr/~nolin/'>Alexandre Nolin</a></p>
     <p>International Symposium on Distributed Computing, <span class='conf'>DISC 2024</span></p>
-    
+
     <p>[ <a href='https://arxiv.org/abs/2408.11041'>arxiv</a> | <a href='https://doi.org/10.4230/LIPIcs.DISC.2024.24'>conference version</a> ]</p>
   </div>
 </li>
-    
-<li class="pub">
+
+<li class="pub selected">
   <div>
     <p class="title">\(\Delta+1\) Vertex Coloring in \( O(n) \) Communication</p>
-    <p class='coauthors'>with <a href='https://parthmittal.github.io/'>Parth Mittal</a></p> 
+    <p class='coauthors'>with <a href='https://parthmittal.github.io/'>Parth Mittal</a></p>
     <p>Symposium on Principles of Distributed Computing, <span class='conf'>PODC 2024</span></p>
     <p>Invited to <span class='journal'>Distributed Computing</span></p>
     <p>[ <a href='https://arxiv.org/abs/2404.19081'>arxiv</a> | <a href='https://dl.acm.org/doi/10.1145/3662158.3662796'>conference version</a> | <a href='https://doi.org/10.1007/s00446-024-00475-3'>journal version</a> ]</p>
   </div>
 </li>
-    
-<li class="pub">
+
+<li class="pub selected">
   <div>
     <p class="title">A Distributed Palette Sparsification Theorem</p>
-    <p class='coauthors'>with <a href='https://people.csail.mit.edu/ghaffari/'>Mohsen Ghaffari</a>, <a href='https://staff.ru.is/mmh/'>Magnús M. Halldórsson</a>, <a href='https://ac.informatik.uni-freiburg.de/kuhn/'>Fabian Kuhn</a>, <a href='https://www.irif.fr/~nolin/'>Alexandre Nolin</a></p> 
+    <p class='coauthors'>with <a href='https://people.csail.mit.edu/ghaffari/'>Mohsen Ghaffari</a>, <a href='https://staff.ru.is/mmh/'>Magnús M. Halldórsson</a>, <a href='https://ac.informatik.uni-freiburg.de/kuhn/'>Fabian Kuhn</a>, <a href='https://www.irif.fr/~nolin/'>Alexandre Nolin</a></p>
     <p>Symposium on Discrete Algorithms, <span class='conf'>SODA 2024</span></p>
-    
+
     <p>[ <a href='https://arxiv.org/abs/2301.06457'>arxiv</a> | <a href='https://epubs.siam.org/doi/10.1137/1.9781611977912.142'>conference version</a> ]</p>
   </div>
 </li>
-    
+
 <li class="pub">
   <div>
     <p class="title">Fast Coloring Despite Congested Relays</p>
-    <p class='coauthors'>with <a href='https://staff.ru.is/mmh/'>Magnús M. Halldórsson</a>, <a href='https://www.irif.fr/~nolin/'>Alexandre Nolin</a></p> 
+    <p class='coauthors'>with <a href='https://staff.ru.is/mmh/'>Magnús M. Halldórsson</a>, <a href='https://www.irif.fr/~nolin/'>Alexandre Nolin</a></p>
     <p>International Symposium on Distributed Computing, <span class='conf'>DISC 2023</span></p>
-    
+
     <p>[ <a href='https://arxiv.org/abs/2308.01359'>arxiv</a> | <a href='https://drops.dagstuhl.de/opus/volltexte/2023/19145/'>conference version</a> ]</p>
   </div>
 </li>
-    
+
 <li class="pub">
   <div>
     <p class="title">Coloring Fast with Broadcasts</p>
-    <p class='coauthors'>with <a href='https://people.csail.mit.edu/ghaffari/'>Mohsen Ghaffari</a>, <a href='https://staff.ru.is/mmh/'>Magnús M. Halldórsson</a>, <a href='https://ac.informatik.uni-freiburg.de/kuhn/'>Fabian Kuhn</a>, <a href='https://www.irif.fr/~nolin/'>Alexandre Nolin</a></p> 
+    <p class='coauthors'>with <a href='https://people.csail.mit.edu/ghaffari/'>Mohsen Ghaffari</a>, <a href='https://staff.ru.is/mmh/'>Magnús M. Halldórsson</a>, <a href='https://ac.informatik.uni-freiburg.de/kuhn/'>Fabian Kuhn</a>, <a href='https://www.irif.fr/~nolin/'>Alexandre Nolin</a></p>
     <p>Symposium on Parallelism in Algorithms and Architectures, <span class='conf'>SPAA 2023</span></p>
-    
+
     <p>[ <a href='https://arxiv.org/abs/2304.09844'>arxiv</a> | <a href='https://dl.acm.org/doi/10.1145/3558481.3591095'>conference version</a> ]</p>
   </div>
 </li>
-    
+
       </ul>
     </section>
 
@@ -309,7 +333,7 @@
 
     <footer>
       <hr>
-      <p><i>(last updated: December 2025)</i></p>
+      <p><i>(last updated: February 2025)</i></p>
     </footer>
   </body>
 </html>
